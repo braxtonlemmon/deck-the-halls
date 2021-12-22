@@ -4,6 +4,11 @@ import { DayType } from "../../types/primary";
 import { H2 } from "../Headings";
 import { BottomRow, Divider, TopRow, Wrapper } from "./styles";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import styled from "styled-components";
+
+const Title = styled(H2)`
+  margin: 10px 0 20px 0;
+`;
 
 const Day = ({ dayData, amImage, pmImage }) => {
   const getDate = () => {
@@ -26,10 +31,10 @@ const Day = ({ dayData, amImage, pmImage }) => {
   };
   const activityAm = dayData.am.activity;
   const activityPm = dayData.pm.activity;
-  console.log(amImage);
+
   return (
     <Wrapper>
-      <H2>{getDate()}</H2>
+      <Title>{getDate()}</Title>
       <TopRow>
         <p>{activityAm}</p>
         <GatsbyImage image={getImage(amImage.node)} alt="blah" />

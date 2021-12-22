@@ -3,6 +3,7 @@ import scheduleData from "../../data/schedule.json";
 import { DayType, ScheduleBlock } from "../../types/primary";
 import { default as DayLine } from "../Day/Day";
 import { Wrapper } from "./styles";
+import Snowfall from "react-snowfall";
 
 const Calendar = ({ images }) => {
   const parseData = (data: ScheduleBlock[]) => {

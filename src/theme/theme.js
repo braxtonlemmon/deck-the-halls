@@ -5,6 +5,7 @@ const theme = {
     three: "#34A65F",
     four: "#0F8A5F",
     five: "#235E6F",
+    gray: "#d5d2d2",
   },
 
   fontSize: {

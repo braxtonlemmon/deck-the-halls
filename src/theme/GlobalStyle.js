@@ -25,31 +25,24 @@ body {
   padding: 0;
   margin: 0;
   width: 100vw;
-  height: 100vh;
   position: relative;
-  overflow: hidden;
-  background: linear-gradient(#123, #111);
+  /* overflow: hidden; */
+  background: "#0F8A5F"
+
 }
 
   html {
     box-sizing: border-box;
     scroll-behavior: smooth;
-    overflow-y: scroll;
   }
 
   body {
-    margin: 0;
-    overflow-y: scroll;
+    /* margin: 0; */
   }
 
   a {
     text-decoration: none;
     color: black;
-  }
-
-  .snow {
-    height: 5px;
-    width: 5px;
   }
 
 `;

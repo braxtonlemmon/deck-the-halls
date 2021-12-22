@@ -6,4 +6,5 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${(props) => props.theme.colors.five};
+  position: relative;
 `;
