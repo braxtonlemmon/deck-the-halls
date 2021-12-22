@@ -1,9 +1,8 @@
 import React from "react";
-import scheduleData from "../../data/schedule.json";
+import scheduleData from "../../data/schedule_data.json";
 import { DayType, ScheduleBlock } from "../../types/primary";
 import { default as DayLine } from "../Day/Day";
 import { Wrapper } from "./styles";
-import Snowfall from "react-snowfall";
 
 const Calendar = ({ images }) => {
   const parseData = (data: ScheduleBlock[]) => {
@@ -14,17 +13,23 @@ const Calendar = ({ images }) => {
     return dayData;
   };
 
+  const today = new Date();
   const days = parseData(scheduleData);
   return (
     <Wrapper>
       {days.map((day: DayType) => {
-        const amImage = images.find(
-          (image) => image.node.name === day.am.image
+        const amImage =
+          day.am && images.find((image) => image.node.name === day.am.image);
+        const pmImage =
+          day.pm && images.find((image) => image.node.name === day.pm.image);
+        return (
+          <DayLine
+            dayData={day}
+            amImage={amImage}
+            pmImage={pmImage}
+            today={today}
+          />
         );
-        const pmImage = images.find(
-          (image) => image.node.name === day.pm.image
-        );
-        return <DayLine dayData={day} amImage={amImage} pmImage={pmImage} />;
       })}
     </Wrapper>
   );

@@ -8,4 +8,5 @@ export const Wrapper = styled.div`
   width: 100%;
   max-width: 600px;
   gap: 40px;
+  margin-bottom: 50px;
 `;

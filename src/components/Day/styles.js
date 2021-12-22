@@ -1,29 +1,32 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import "@fontsource/mountains-of-christmas";
-
-const wiggle = keyframes`
-    0% { transform: rotate(0deg); }
-  80% { transform: rotate(0deg); }
-  85% { transform: rotate(5deg); }
-  95% { transform: rotate(-5deg); }
-  100% { transform: rotate(0deg); }
-`;
+import { H2 } from "../Headings";
 
 export const Wrapper = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* height: 100%; */
-  width: 100%;
+  width: 90%;
+  height: 100%;
   box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.4), -10px 8px 15px rgba(0, 0, 0, 0.4),
     10px 8px 15px rgba(0, 0, 0, 0.4);
   border-radius: 15px;
   background-color: ${(props) => props.theme.colors.gray};
   padding: 15px;
-  &:hover {
-    animation: 1s ${wiggle} ease-out;
-  }
+  transform: ${(props) => (props.isToday ? "scale(1.05)" : "none")};
+  margin: 0 10px;
+`;
+
+export const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.2);
 `;
 
 export const Divider = styled.div`
@@ -35,16 +38,24 @@ export const Divider = styled.div`
 
 const Row = styled.div`
   width: 100%;
-  height: 100%;
+  height: 180px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  padding: 15px 0;
+  padding: 15px 10px;
   gap: 20px;
   box-shadow: 0px 2px 2px grey;
   border-radius: 10px;
   background-color: white;
   font-size: 1.3em;
+  text-align: center;
+  > * {
+    flex: 1;
+  }
+  img {
+    width: 150px;
+    margin: 0 auto;
+  }
 `;
 
 export const TopRow = styled(Row)`
@@ -54,4 +65,8 @@ export const TopRow = styled(Row)`
 export const BottomRow = styled(Row)`
   color: white;
   background-color: ${(props) => props.theme.colors.two};
+`;
+
+export const Title = styled(H2)`
+  margin: 10px 0 20px 0;
 `;

@@ -1,17 +1,20 @@
-import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
-import { DayType } from "../../types/primary";
-import { H2 } from "../Headings";
-import { BottomRow, Divider, TopRow, Wrapper } from "./styles";
+import React, { useCallback, useEffect, useState } from "react";
+import { BottomRow, Divider, Overlay, Title, TopRow, Wrapper } from "./styles";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import styled from "styled-components";
 
-const Title = styled(H2)`
-  margin: 10px 0 20px 0;
-`;
+const Day = ({ dayData, amImage, pmImage, today }) => {
+  const [isToday, setIsToday] = useState(false);
+  const [hasPassed, setHasPassed] = useState(false);
 
-const Day = ({ dayData, amImage, pmImage }) => {
-  const getDate = () => {
+  const getDate = useCallback(() => {
+    const day = parseInt(dayData.am.date.split("-")[0]);
+    const month = day < 20 ? "January" : "December";
+    const year = day < 20 ? "2022" : "2021";
+    const date = new Date(`${month} ${day}, ${year}`);
+    return date;
+  }, [dayData]);
+
+  const getDateString = () => {
     const daysOfWeek = [
       "Sunday",
       "Monday",
@@ -26,23 +29,50 @@ const Day = ({ dayData, amImage, pmImage }) => {
     const year = day < 20 ? "2022" : "2021";
     const date = new Date(`${month} ${day}, ${year}`);
     const dayOfWeek = daysOfWeek[date.getDay()];
-
     return `${dayOfWeek} ${month} ${day}, ${year}`;
   };
-  const activityAm = dayData.am.activity;
-  const activityPm = dayData.pm.activity;
+  const activityAm = dayData?.am?.activity ?? null;
+  const activityPm = dayData?.pm?.activity ?? null;
+
+  useEffect(() => {
+    console.log(today.getDate());
+    if (today.getDate() === parseInt(dayData.am.date.split("-")[0])) {
+      setIsToday(true);
+    }
+
+    if (today.getDate() !== getDate().getDate() && today > getDate()) {
+      setHasPassed(true);
+    }
+  }, [dayData, getDate, today]);
 
   return (
-    <Wrapper>
-      <Title>{getDate()}</Title>
+    <Wrapper isToday={isToday}>
+      {hasPassed && <Overlay />}
+      <Title>{getDateString()}</Title>
       <TopRow>
-        <p>{activityAm}</p>
-        <GatsbyImage image={getImage(amImage.node)} alt="blah" />
+        {activityAm ? (
+          <>
+            <p>{activityAm}</p>
+            {amImage && (
+              <GatsbyImage image={getImage(amImage.node)} alt="blah" />
+            )}
+          </>
+        ) : (
+          <p>nada</p>
+        )}
       </TopRow>
       <Divider />
       <BottomRow>
-        <GatsbyImage image={getImage(pmImage.node)} alt="blah" />
-        <p>{activityPm}</p>
+        {activityPm ? (
+          <>
+            {pmImage && (
+              <GatsbyImage image={getImage(pmImage.node)} alt="blah" />
+            )}
+            <p>{activityPm}</p>
+          </>
+        ) : (
+          <p>nada</p>
+        )}
       </BottomRow>
     </Wrapper>
   );
