@@ -21,18 +21,19 @@
   },
   {
     "date": "24-AM",
-    "activity": "Ice skating at Herriman Ice Ribbon",
-    "image": "ice_skating"
+    "activity": "Christmas books",
+    "image": "christmas_book"
   },
+
   {
     "date": "24-PM",
-    "activity": "Taste test contest",
-    "image": "taste_test"
+    "activity": "Gingerbread faces",
+    "image": "gingerbread"
   },
   {
     "date": "25-AM",
-    "activity": "Gingerbread faces",
-    "image": "gingerbread"
+    "activity": "Taste test contest",
+    "image": "taste_test"
   },
   {
     "date": "25-PM",
@@ -41,13 +42,13 @@
   },
   {
     "date": "26-AM",
-    "activity": "Baking/cooking contest",
-    "image": "baking_contest"
+    "activity": "Board game (Terraforming Mars/Wingspan)",
+    "image": "board_game"
   },
   {
     "date": "26-PM",
-    "activity": "Board game (Terraforming Mars/Wingspan)",
-    "image": "board_game"
+    "activity": "Baking/cooking contest",
+    "image": "baking_contest"
   },
   {
     "date": "27-AM",

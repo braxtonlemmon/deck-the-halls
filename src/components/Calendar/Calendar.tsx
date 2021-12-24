@@ -13,7 +13,7 @@ const Calendar = ({ images }) => {
     return dayData;
   };
 
-  const today = new Date();
+  const today = new Date("December 24, 2021");
   const days = parseData(scheduleData);
   return (
     <Wrapper>

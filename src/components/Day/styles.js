@@ -27,6 +27,7 @@ export const Overlay = styled.div`
   height: 100%;
   z-index: 50;
   background: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
 `;
 
 export const Divider = styled.div`
